@@ -1,0 +1,16 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+  border: solid var(--purple) 1px;
+  border-radius: 12px;
+  padding: 0.5rem;
+}
+
+.container span {
+  padding: 1rem;
+  border: solid var(--purple) 1px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+}
