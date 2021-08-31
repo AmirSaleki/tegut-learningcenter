@@ -1,24 +1,40 @@
 .container {
-  margin: 2rem;
+  margin: 4rem auto;
+  width: 70vw;
+  align-self: center;
 }
 
 .interior {
-  height: 80vh;
+  width: 100%;
+  max-height: 40vw;
   border-radius: 25px;
   background-color: var(--white);
   color: var(--purple);
   display: flex;
   flex-direction: row;
+  gap: 2rem;
 }
 
 .menu {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
-  gap: 2rem;
-  border-right: 2px solid var(--purple);
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1.5rem;
+  gap: 1rem;
+  background-color: var(--purple);
+  color: white;
+  border-bottom-left-radius: 25px;
+  border-top-left-radius: 25px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.menu li {
+  float: left;
 }
 
 .content {
+  width: 100%;
   padding: 2rem;
 }

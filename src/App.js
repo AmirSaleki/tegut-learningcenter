@@ -8,6 +8,7 @@ import MainPage from "./components/MainPage/MainPage.component";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.login.isAuthenticated);
+
   return (
     <>
       <Header />

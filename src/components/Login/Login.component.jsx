@@ -34,6 +34,7 @@ const Login = () => {
     if (currentlyUser) {
       if (enteredUserName.includes("@") && enteredPassword.length > 5) {
         dispatch(loginActions.login(true));
+        window.localStorage.setItem("isLoggedIn", true);
       } else {
         alert("enter the right one!");
       }

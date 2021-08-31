@@ -32,14 +32,18 @@ const Numbers = (props) => {
         <span onClick={props.numberHandler} id={9}>
           9
         </span>
-        <span onClick={props.numberHandler} id={"B"}>
-          &#9224
+        <span onClick={props.numberHandler} id={"C"}>
+          C
         </span>
         <span onClick={props.numberHandler} id={0}>
           0
         </span>
-        <span onClick={props.numberHandler} id={"C"}>
-          C
+        <span onClick={props.numberHandler} id={"B"}>
+          <i
+            className="fas fa-backspace"
+            onClick={props.numberHandler}
+            id={"B"}
+          ></i>
         </span>
       </div>
     </>

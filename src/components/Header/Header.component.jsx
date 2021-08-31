@@ -18,9 +18,6 @@ const Header = () => {
             {isLoggedIn && (
               <ul>
                 <li onClick={logoutHandler}>Abmelden</li>
-                <li>Profil</li>
-                <li>Metzgerei</li>
-                <li>Kassierern</li>
               </ul>
             )}
           </div>
