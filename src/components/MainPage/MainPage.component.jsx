@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import dummyData from "../../DUMMY_DATA";
 import css from "./MainPage.module.css";
@@ -12,21 +13,24 @@ const MainPage = () => {
     (item) => item.productForm === "vegetable"
   );
   const meatData = dummyData.filter((item) => item.productForm === "meat");
-
+  const falseAnswerArray = useSelector((state) => state.false.falseList);
   const [content, setContent] = useState("learn");
+
   const clickHandler = (e) => {
     setContent(e.target.id);
   };
+
   return (
     <>
       <div className={css.container}>
         <Card>
           <div className={css.interior}>
             <div className={css.menu}>
-              <span id="learn" onClick={clickHandler}>
-                Lernen
-              </span>
+              <span>Lernen</span>
               <ul>
+                <li id="learn" onClick={clickHandler}>
+                  Alles
+                </li>
                 <li onClick={clickHandler} id="learn-fruit">
                   Obst
                 </li>
@@ -39,10 +43,11 @@ const MainPage = () => {
                   Metzgerei
                 </li>
               </ul>
-              <span id="quiz" onClick={clickHandler}>
-                Quiz
-              </span>
+              <span>Quiz</span>
               <ul>
+                <li id="quiz" onClick={clickHandler}>
+                  Alles
+                </li>
                 <li onClick={clickHandler} id="quiz-fruit">
                   Obst
                 </li>
@@ -53,6 +58,9 @@ const MainPage = () => {
                 <br />
                 <li onClick={clickHandler} id="quiz-meat">
                   Metzgerei
+                </li>
+                <li onClick={clickHandler} id="quiz-false">
+                  Fehler Liste
                 </li>
               </ul>
             </div>
@@ -65,6 +73,7 @@ const MainPage = () => {
               {content === "quiz-fruit" && <Quiz data={fruitData} />}
               {content === "quiz-vegetable" && <Quiz data={vegetableData} />}
               {content === "quiz-meat" && <Quiz data={meatData} />}
+              {content === "quiz-false" && <Quiz data={falseAnswerArray} />}
             </div>
           </div>
         </Card>

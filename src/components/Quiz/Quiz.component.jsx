@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { falseActions } from "../../store/falseItems";
+
 import Numbers from "../UI/Numbers/Numbers.component";
 import Input from "../UI/Input/Input.component";
 import css from "./Quiz.module.css";
@@ -8,7 +11,9 @@ const Quiz = (props) => {
   const [isCorrectAnswer, setIsCorrectAnswer] = useState(0);
   const [inputNumbers, setInputNumbers] = useState([]);
   const [nextItem, setNextItem] = useState(0);
-  const [falseArray, setFalseArray] = useState([]);
+
+  const dispatch = useDispatch();
+  const currentFalseArray = useSelector((state) => state.false.falseList);
 
   const numberHandler = (e) => {
     if (e.target.id === "C") {
@@ -39,7 +44,6 @@ const Quiz = (props) => {
         setIsCorrectAnswer(0);
       }, 500);
       setInputNumbers([]);
-      props.data[nextItem].isAnswered = true;
 
       if (nextItem < props.data.length - 1) {
         setTimeout(() => {
@@ -57,13 +61,19 @@ const Quiz = (props) => {
       setTimeout(() => {
         setIsCorrectAnswer(0);
       }, 500);
-      const falseItem = props.data[nextItem].ArtikelNr;
-      if (!falseArray.find((item) => item === falseItem)) {
-        setFalseArray([...falseArray, falseItem]);
+      const falseItem = props.data[nextItem];
+      if (!currentFalseArray.find((item) => item === falseItem)) {
+        dispatch(falseActions.addItem(falseItem));
       }
     }
   };
-  useEffect(isCorrect, [falseArray, inputNumbers, nextItem, props.data]);
+  useEffect(isCorrect, [
+    inputNumbers,
+    nextItem,
+    props,
+    dispatch,
+    currentFalseArray,
+  ]);
 
   return (
     <>
@@ -80,7 +90,6 @@ const Quiz = (props) => {
             ></i>
           </div>
           <Content image={props.data[nextItem].img} />
-          {/* <div className={css.progressBar}></div> */}
         </div>
         <div className={css.numpad}>
           <Input readOnly={true} value={inputNumbers.join("")} />

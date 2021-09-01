@@ -4,11 +4,11 @@ import Numbers from "../UI/Numbers/Numbers.component";
 import Input from "../UI/Input/Input.component";
 import Content from "../Content/Content.component";
 import css from "./Learn.module.css";
-import dummyData from "../../DUMMY_DATA";
 
-const Learn = () => {
+const Learn = (props) => {
   const [inputNumbers, setInputNumbers] = useState([]);
   const [nextItem, setNextItem] = useState(0);
+  const data = props.data;
   const numberHandler = (e) => {
     if (e.target.id === "C") {
       setInputNumbers([]);
@@ -28,11 +28,10 @@ const Learn = () => {
   };
   const isCorrect = () => {
     if (
-      inputNumbers.join("").toString() ===
-      dummyData[nextItem].ArtikelNr.toString()
+      inputNumbers.join("").toString() === data[nextItem].ArtikelNr.toString()
     ) {
       setInputNumbers([]);
-      if (nextItem < dummyData.length - 1) {
+      if (nextItem < data.length - 1) {
         setNextItem(nextItem + 1);
       } else {
         setNextItem(0);
@@ -40,22 +39,22 @@ const Learn = () => {
     }
   };
 
-  useEffect(isCorrect, [inputNumbers, nextItem]);
+  useEffect(isCorrect, [inputNumbers, nextItem, data]);
 
   return (
     <>
       <div className={css.container}>
         <div className={css.content}>
-          <Content image={dummyData[nextItem].img} />
+          <Content image={data[nextItem].img} />
         </div>
         <div className={css.number}>
           <div>
-            <p>Name: {dummyData[nextItem].title}</p>
-            <p>Artikel Nummer: {dummyData[nextItem].ArtikelNr}</p>
-            <p>Type: {dummyData[nextItem].type}</p>
+            <p>Name: {data[nextItem].title}</p>
+            <p>Artikel Nummer: {data[nextItem].ArtikelNr}</p>
+            <p>Type: {data[nextItem].type}</p>
           </div>
           <Input
-            placeholder={dummyData[nextItem].ArtikelNr}
+            placeholder={data[nextItem].ArtikelNr}
             readOnly={true}
             value={inputNumbers.join("")}
           />

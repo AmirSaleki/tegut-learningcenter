@@ -110,6 +110,16 @@ const dummyData = [
     isLearned: false,
     isAnswered: false,
   },
+  {
+    id: 11,
+    title: "Rindergulash",
+    ArtikelNr: 4321,
+    img: "Kein Bild",
+    type: "Conventionel",
+    productForm: "meat",
+    isLearned: false,
+    isAnswered: false,
+  },
 ];
 
 export default dummyData;
