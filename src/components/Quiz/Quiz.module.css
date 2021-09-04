@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   gap: 6rem;
   margin: 1rem auto;
 }
@@ -15,10 +15,12 @@
   gap: 1rem;
 }
 .content {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+  gap: 2rem;
 }
 
 .logos {
@@ -27,7 +29,6 @@
   flex-direction: row;
   justify-content: space-around;
   color: darkgray;
-  opacity: 30%;
 }
 
 .correctAnswer {
@@ -36,53 +37,4 @@
 
 .falseAnswer {
   color: red;
-}
-
-.progressBar {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  height: 10px;
-  background: #f1f1f1;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progressBar:after {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 0;
-  height: 100%;
-  border-radius: 4px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  animation: load 5s infinite;
-}
-
-@keyframes load {
-  0% {
-    width: 0;
-    background: green;
-  }
-
-  25% {
-    width: 40%;
-    background: green;
-  }
-
-  50% {
-    width: 60%;
-    background: green;
-  }
-
-  75% {
-    width: 75%;
-    background: green;
-  }
-
-  100% {
-    width: 100%;
-    background: green;
-  }
 }

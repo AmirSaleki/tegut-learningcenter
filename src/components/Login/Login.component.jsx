@@ -32,7 +32,10 @@ const Login = () => {
   const submitHandler = (el) => {
     el.preventDefault();
     if (currentlyUser) {
-      if (enteredUserName.includes("@") && enteredPassword.length > 5) {
+      if (
+        enteredUserName === "admin@tlc.com" &&
+        enteredPassword === "tegut1234"
+      ) {
         dispatch(loginActions.login(true));
         window.localStorage.setItem("isLoggedIn", true);
       } else {
@@ -72,12 +75,12 @@ const Login = () => {
                 />
               )}
               <Button className={currentlyUser ? "primary" : "salmon"}>
-                {currentlyUser ? "Login" : "Create new Account"}
+                {currentlyUser ? "Einloggen" : "Benutzerkonto erstellen"}
               </Button>
               <p onClick={userManagerHandler}>
                 {currentlyUser
-                  ? "Don't have an Account? Sign up"
-                  : "Already a member? Sign in"}
+                  ? "Noch kein Konto? Hier Anmelden"
+                  : "Schon ein Mitglied? Einloggen"}
               </p>
             </form>
           </Card>

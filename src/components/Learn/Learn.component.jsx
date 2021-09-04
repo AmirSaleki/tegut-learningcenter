@@ -47,12 +47,12 @@ const Learn = (props) => {
         <div className={css.content}>
           <Content image={data[nextItem].img} />
         </div>
+        <div className={css.details}>
+          <p>Name: {data[nextItem].title}</p>
+          <p>Artikel Nummer: {data[nextItem].ArtikelNr}</p>
+          <p>Type: {data[nextItem].type}</p>
+        </div>
         <div className={css.number}>
-          <div>
-            <p>Name: {data[nextItem].title}</p>
-            <p>Artikel Nummer: {data[nextItem].ArtikelNr}</p>
-            <p>Type: {data[nextItem].type}</p>
-          </div>
           <Input
             placeholder={data[nextItem].ArtikelNr}
             readOnly={true}
