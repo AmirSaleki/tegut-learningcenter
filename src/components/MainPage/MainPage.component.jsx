@@ -26,7 +26,7 @@ const MainPage = () => {
         <Card>
           <div className={css.interior}>
             <div className={css.menu}>
-              <label htmlFor="learn-plu">Lern Kategorien:</label>
+              <label htmlFor="learn-plu">PLU Lern-Kategorien:</label>
               <select onChange={clickHandler} name="learn-plu" id="learn-plu">
                 <option value="learn">Alles</option>
                 <option value="learn-fruit">Obst</option>
@@ -34,7 +34,7 @@ const MainPage = () => {
                 <option value="learn-bread">Backwaren</option>
                 <option value="learn-meat">Metzgerei</option>
               </select>
-              <label htmlFor="quiz-plu">Quiz Kategorien:</label>
+              <label htmlFor="quiz-plu">PLU Quiz-Kategorien:</label>
               <select onChange={clickHandler} name="quiz-plu" id="quiz-plu">
                 <option value="quiz">Alles</option>
                 <option value="quiz-fruit">Obst</option>

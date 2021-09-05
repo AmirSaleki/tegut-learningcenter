@@ -29,17 +29,25 @@
   user-select: none;
 }
 
-.menu li {
-  float: left;
-}
-
 .content {
   width: 100%;
   padding: 2rem;
 }
 
+label {
+  font-size: smaller;
+}
+
 select {
   width: 100%;
+  border-radius: 10px;
+  font-size: large;
+  background-color: var(--purple);
+  color: white;
+  text-align-last: center;
+  -ms-text-align-last: center;
+  -moz-text-align-last: center;
+  outline: none;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -50,6 +58,8 @@ select {
   .interior {
     max-height: 90%;
     flex-direction: column;
+    gap: 0.5rem;
+    grid-gap: 0.5rem;
   }
   .content {
     padding: 1rem;

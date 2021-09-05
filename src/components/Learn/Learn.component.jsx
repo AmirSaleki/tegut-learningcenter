@@ -45,6 +45,15 @@ const Learn = (props) => {
     <>
       <div className={css.container}>
         <div className={css.content}>
+          <div>
+            <label htmlFor="progressbar">Fortschrittsanzeige</label>
+            <meter
+              id="progressbar"
+              min="0"
+              max={data.length}
+              value={nextItem}
+            />
+          </div>
           <Content image={data[nextItem].img} />
         </div>
         <div className={css.details}>

@@ -114,7 +114,7 @@ const dummyData = [
     id: 11,
     title: "Rindergulash",
     ArtikelNr: 4321,
-    img: "https://lh3.googleusercontent.com/proxy/Zm4jjkhk4yEbfHrL0DfCTULVCJ36AUfVofUJjSBmOVmHD25qctTX01zc9Z_aYBappBnpXb-S9FKVwIMIE-RsOW1TFSQ4_orRe-d7HGM7",
+    img: "https://clickandgrill.de/media/catalog/product/cache/7732df489d1b255c6cf2478bd3f8692c/r/i/rindergulasch.png",
     type: "Conventionel",
     productForm: "meat",
     isLearned: false,

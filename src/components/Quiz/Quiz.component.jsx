@@ -79,6 +79,15 @@ const Quiz = (props) => {
     <>
       <div className={css.container}>
         <div className={css.content}>
+          <div>
+            <label htmlFor="progressbar">Fortschrittsanzeige</label>
+            <meter
+              id="progressbar"
+              min="0"
+              max={props.data.length}
+              value={nextItem}
+            />
+          </div>
           <div className={css.logos}>
             <i
               className="fas fa-check-circle fa-4x"
