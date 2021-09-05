@@ -4,10 +4,11 @@
 }
 
 .container {
+  width: 100%;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   color: white;
   padding: 0 4rem;
 }
@@ -31,4 +32,10 @@ a:hover {
 
 .logoText {
   font-size: 2rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  .logoText {
+    font-size: 1.5rem;
+  }
 }

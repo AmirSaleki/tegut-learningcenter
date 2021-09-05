@@ -130,6 +130,26 @@ const dummyData = [
     isLearned: false,
     isAnswered: false,
   },
+  {
+    id: 13,
+    title: "Brötchen",
+    ArtikelNr: 8215,
+    img: "https://www.kondiback.de/medien/extensions/galerie_tooltip/13330ef3c9_0_1200_857.png",
+    type: "Conventionel",
+    productForm: "bread",
+    isLearned: false,
+    isAnswered: false,
+  },
+  {
+    id: 14,
+    title: "Dunkel Donut",
+    ArtikelNr: 8115,
+    img: "https://e7.pngegg.com/pngimages/675/1011/png-clipart-doughnut-lollipop-donut-food-donut-png.png",
+    type: "Conventionel",
+    productForm: "bread",
+    isLearned: false,
+    isAnswered: false,
+  },
 ];
 
 export default dummyData;

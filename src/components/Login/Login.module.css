@@ -30,3 +30,13 @@ h4 {
   font-size: 1rem;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 1000px) {
+  .background {
+    flex-direction: column;
+  }
+  .container {
+    margin-top: 1rem;
+    width: 90%;
+  }
+}

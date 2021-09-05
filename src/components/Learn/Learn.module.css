@@ -32,3 +32,12 @@ p {
   align-items: left;
   gap: 2rem;
 }
+
+@media only screen and (max-width: 1000px) {
+  .container {
+    flex-direction: column;
+  }
+  .details {
+    gap: 0.2rem;
+  }
+}

@@ -81,11 +81,11 @@ const Quiz = (props) => {
         <div className={css.content}>
           <div className={css.logos}>
             <i
-              class="fas fa-check-circle fa-4x"
+              className="fas fa-check-circle fa-4x"
               style={isCorrectAnswer === 1 ? { color: "green" } : { color: "" }}
             ></i>
             <i
-              class="fas fa-times-circle fa-4x"
+              className="fas fa-times-circle fa-4x"
               style={isCorrectAnswer === 2 ? { color: "red" } : { color: "" }}
             ></i>
           </div>

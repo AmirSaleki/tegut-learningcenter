@@ -37,3 +37,27 @@
   width: 100%;
   padding: 2rem;
 }
+
+select {
+  width: 100%;
+}
+
+@media only screen and (max-width: 1000px) {
+  .container {
+    margin: 1rem auto;
+    width: 90%;
+  }
+  .interior {
+    max-height: 90%;
+    flex-direction: column;
+  }
+  .content {
+    padding: 1rem;
+  }
+  .menu {
+    flex-direction: column;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+  }
+}

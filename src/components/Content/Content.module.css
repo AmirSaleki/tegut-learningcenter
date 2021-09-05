@@ -9,3 +9,10 @@ img {
   width: 13vw;
   max-height: 25vw;
 }
+
+@media only screen and (max-width: 1000px) {
+  img {
+    width: 33vw;
+    max-height: 45vw;
+  }
+}
