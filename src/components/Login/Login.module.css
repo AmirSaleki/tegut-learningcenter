@@ -22,13 +22,26 @@ h4 {
   color: #444;
 }
 
-.form input {
-  width: 100%;
-}
-
 .form p {
   font-size: 1rem;
   cursor: pointer;
+}
+
+.showPassword {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+#sp-label {
+  font-size: xx-small;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 @media only screen and (max-width: 1000px) {

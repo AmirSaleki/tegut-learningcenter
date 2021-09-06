@@ -14,6 +14,7 @@ const Login = () => {
   const [currentlyUser, setCurrentlyUser] = useState(true);
   const [enteredUserName, setEnteredUserName] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const userManagerHandler = () => {
     setCurrentlyUser(!currentlyUser);
@@ -44,6 +45,13 @@ const Login = () => {
     } else {
     }
   };
+  const showPasswordHandler = (e) => {
+    if (e.target.checked) {
+      setShowPassword(true);
+    } else {
+      setShowPassword(false);
+    }
+  };
   return (
     <>
       <div className={css.background}>
@@ -62,18 +70,28 @@ const Login = () => {
                 required
               />
               <Input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="password"
                 onChange={passwordHandler}
                 required
               />
               {!currentlyUser && (
                 <Input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="retype your password"
                   onChange={secondPasswordHandler}
                 />
               )}
+              <span className={css.showPassword}>
+                <input
+                  onChange={showPasswordHandler}
+                  id="show-password"
+                  type="checkbox"
+                />
+                <label id="sp-label" htmlFor="show-password">
+                  Passwort anzeigen
+                </label>
+              </span>
               <Button className={currentlyUser ? "primary" : "salmon"}>
                 {currentlyUser ? "Einloggen" : "Benutzerkonto erstellen"}
               </Button>

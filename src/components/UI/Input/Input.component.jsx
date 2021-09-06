@@ -1,10 +1,11 @@
 import React from "react";
-import "./Input.module.css";
+import css from "./Input.module.css";
 
 const Input = (props) => {
   return (
     <>
       <input
+        className={css.input}
         type={props.type}
         placeholder={props.placeholder}
         onChange={props.onChange}

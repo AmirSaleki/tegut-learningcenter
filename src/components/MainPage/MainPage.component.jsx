@@ -15,10 +15,18 @@ const MainPage = () => {
   const meatData = dummyData.filter((item) => item.productForm === "meat");
   const breadData = dummyData.filter((item) => item.productForm === "bread");
   const falseAnswerArray = useSelector((state) => state.false.falseList);
+
   const [content, setContent] = useState("learn");
+  const [showMenu, setShowMenu] = useState(true);
+
+  const showMenuHandler = () => {
+    setShowMenu(!showMenu);
+  };
 
   const clickHandler = (e) => {
     setContent(e.target.value);
+
+    setShowMenu(false);
   };
   return (
     <>
@@ -26,23 +34,28 @@ const MainPage = () => {
         <Card>
           <div className={css.interior}>
             <div className={css.menu}>
-              <label htmlFor="learn-plu">PLU Lern-Kategorien:</label>
-              <select onChange={clickHandler} name="learn-plu" id="learn-plu">
-                <option value="learn">Alles</option>
-                <option value="learn-fruit">Obst</option>
-                <option value="learn-vegetable">Gemüse</option>
-                <option value="learn-bread">Backwaren</option>
-                <option value="learn-meat">Metzgerei</option>
-              </select>
-              <label htmlFor="quiz-plu">PLU Quiz-Kategorien:</label>
-              <select onChange={clickHandler} name="quiz-plu" id="quiz-plu">
-                <option value="quiz">Alles</option>
-                <option value="quiz-fruit">Obst</option>
-                <option value="quiz-vegetable">Gemüse</option>
-                <option value="quiz-bread">Backwaren</option>
-                <option value="quiz-meat">Metzgerei</option>
-                <option value="quiz-false">Fehler Liste</option>
-              </select>
+              <div onClick={showMenuHandler} className={css.hamburgerMenu}>
+                <i className="fas fa-bars"></i>
+              </div>
+              <div className={showMenu ? css.menuContent : css.hide}>
+                <label htmlFor="learn-plu">PLU Lern-Kategorien:</label>
+                <select onChange={clickHandler} name="learn-plu" id="learn-plu">
+                  <option value="learn">Alles</option>
+                  <option value="learn-fruit">Obst</option>
+                  <option value="learn-vegetable">Gemüse</option>
+                  <option value="learn-bread">Backwaren</option>
+                  <option value="learn-meat">Metzgerei</option>
+                </select>
+                <label htmlFor="quiz-plu">PLU Quiz-Kategorien:</label>
+                <select onChange={clickHandler} name="quiz-plu" id="quiz-plu">
+                  <option value="quiz">Alles</option>
+                  <option value="quiz-fruit">Obst</option>
+                  <option value="quiz-vegetable">Gemüse</option>
+                  <option value="quiz-bread">Backwaren</option>
+                  <option value="quiz-meat">Metzgerei</option>
+                  <option value="quiz-false">Fehler Liste</option>
+                </select>
+              </div>
             </div>
             <div className={css.content}>
               {content === "learn" && <Learn data={dummyData} />}
