@@ -4,7 +4,7 @@ import { loginActions } from "../../store/login-slice";
 
 import css from "./Header.module.css";
 
-const Header = () => {
+const Header = (props) => {
   const isLoggedIn = useSelector((state) => state.login.isAuthenticated);
   const dispatch = useDispatch();
   const logoutHandler = () => {
@@ -18,12 +18,14 @@ const Header = () => {
             {isLoggedIn && (
               <ul>
                 <li onClick={logoutHandler}>Abmelden</li>
+                <li onClick={props.homePageHandler}>Startseite</li>
               </ul>
             )}
           </div>
-          <div className={css.logo}>
-            <p className={css.logoText}>tegut</p>
-            <p>gute Lebensmittel</p>
+          <div onClick={props.homePageHandler} className={css.logo}>
+            <p onClick={props.homePageHandler} className={css.logoText}>
+              TLC
+            </p>
           </div>
         </div>
       </div>

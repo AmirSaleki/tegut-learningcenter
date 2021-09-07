@@ -25,7 +25,6 @@ const MainPage = () => {
 
   const clickHandler = (e) => {
     setContent(e.target.value);
-
     setShowMenu(false);
   };
   return (
@@ -39,6 +38,7 @@ const MainPage = () => {
               </div>
               <div className={showMenu ? css.menuContent : css.hide}>
                 <label htmlFor="learn-plu">PLU Lern-Kategorien:</label>
+
                 <select onChange={clickHandler} name="learn-plu" id="learn-plu">
                   <option value="learn">Alles</option>
                   <option value="learn-fruit">Obst</option>
