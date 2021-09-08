@@ -16,7 +16,7 @@ const MainPage = () => {
   const breadData = dummyData.filter((item) => item.productForm === "bread");
   const falseAnswerArray = useSelector((state) => state.false.falseList);
 
-  const [content, setContent] = useState("learn");
+  const [content, setContent] = useState("landingPage");
   const [showMenu, setShowMenu] = useState(true);
 
   const showMenuHandler = () => {
@@ -25,6 +25,7 @@ const MainPage = () => {
 
   const clickHandler = (e) => {
     setContent(e.target.value);
+    e.target.value = "";
     setShowMenu(false);
   };
   return (
@@ -38,16 +39,17 @@ const MainPage = () => {
               </div>
               <div className={showMenu ? css.menuContent : css.hide}>
                 <label htmlFor="learn-plu">PLU Lern-Kategorien:</label>
-
                 <select onChange={clickHandler} name="learn-plu" id="learn-plu">
+                  <option value="">Wählen Sie einen Modus</option>
                   <option value="learn">Alles</option>
                   <option value="learn-fruit">Obst</option>
                   <option value="learn-vegetable">Gemüse</option>
                   <option value="learn-bread">Backwaren</option>
                   <option value="learn-meat">Metzgerei</option>
-                </select>
+                </select>{" "}
                 <label htmlFor="quiz-plu">PLU Quiz-Kategorien:</label>
                 <select onChange={clickHandler} name="quiz-plu" id="quiz-plu">
+                  <option value="">Wählen Sie einen Modus</option>
                   <option value="quiz">Alles</option>
                   <option value="quiz-fruit">Obst</option>
                   <option value="quiz-vegetable">Gemüse</option>
@@ -58,6 +60,12 @@ const MainPage = () => {
               </div>
             </div>
             <div className={css.content}>
+              {content === "landingPage" && (
+                <h3>
+                  Bitte wählen Sie eine Lernmethode aus dem Menü auf der linken
+                  Seite
+                </h3>
+              )}
               {content === "learn" && <Learn data={dummyData} />}
               {content === "learn-fruit" && <Learn data={fruitData} />}
               {content === "learn-vegetable" && <Learn data={vegetableData} />}
@@ -68,8 +76,14 @@ const MainPage = () => {
               {content === "quiz-vegetable" && <Quiz data={vegetableData} />}
               {content === "quiz-meat" && <Quiz data={meatData} />}
               {content === "quiz-bread" && <Quiz data={breadData} />}
-              {content === "quiz-false" && falseAnswerArray.length < 0 && (
+              {content === "quiz-false" && falseAnswerArray.length > 0 && (
                 <Quiz data={falseAnswerArray} />
+              )}
+              {content === "quiz-false" && falseAnswerArray.length <= 0 && (
+                <h3>
+                  Diese Seite funktioniert nur, wenn Sie in einem anderen Quiz
+                  eine falsche PLU eingegeben haben
+                </h3>
               )}
             </div>
           </div>

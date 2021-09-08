@@ -13,6 +13,12 @@ function App() {
   const isLoggedIn = useSelector((state) => state.login.isAuthenticated);
   const [appSection, setAppSection] = useState("initialState");
   const [showMenu, setShowMenu] = useState(true);
+  if (isLoggedIn) {
+    window.history.pushState(null, document.title, window.location.href);
+    window.addEventListener("popstate", function (event) {
+      window.history.pushState(null, document.title, window.location.href);
+    });
+  }
   const appSectionHandler = (e) => {
     setAppSection(e.target.id);
     setShowMenu(false);

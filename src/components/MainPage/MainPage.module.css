@@ -6,7 +6,7 @@
 
 .interior {
   width: 100%;
-  max-height: 40vw;
+  min-height: 35vw;
   border-radius: 25px;
   background-color: var(--white);
   color: var(--purple);

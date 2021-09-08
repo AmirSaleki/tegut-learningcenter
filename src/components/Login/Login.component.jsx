@@ -34,7 +34,7 @@ const Login = () => {
     el.preventDefault();
     if (currentlyUser) {
       if (
-        enteredUserName === "admin@tlc.com" &&
+        enteredUserName.toLowerCase().trim() === "admin@tlc.com" &&
         enteredPassword === "tegut1234"
       ) {
         dispatch(loginActions.login(true));
