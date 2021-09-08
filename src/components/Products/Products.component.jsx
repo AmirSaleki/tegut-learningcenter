@@ -4,15 +4,16 @@ import Card from "../UI/Card/Card.component";
 const Products = (props) => {
   const data = props.data;
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterTerm, setFilterTerm] = useState("");
+  const [filterTerm, setFilterTerm] = useState([]);
   const itemSearchHandler = (e) => {
     setSearchTerm(e.target.value);
   };
   const itemFilterHandler = (e) => {
     if (e.target.checked) {
-      setFilterTerm(e.target.id);
+      const newFilter = [...filterTerm, e.target.id];
+      setFilterTerm(newFilter);
     } else {
-      setFilterTerm("");
+      setFilterTerm(filterTerm.filter((item) => item !== e.target.id));
     }
   };
   return (
@@ -34,16 +35,7 @@ const Products = (props) => {
               <label htmlFor="bread">Backwaren</label>
               <input onChange={itemFilterHandler} id="meat" type="checkbox" />
               <label htmlFor="meat">Metzgerei</label>
-              <input
-                onChange={itemFilterHandler}
-                id="conventionel"
-                type="checkbox"
-              />
-              <label htmlFor="conventionel">Conventionel</label>
-              <input onChange={itemFilterHandler} id="bio" type="checkbox" />
-              <label onChange={itemFilterHandler} htmlFor="bio">
-                Bio
-              </label>
+
               <input
                 className={css.searchInput}
                 onChange={itemSearchHandler}
@@ -58,11 +50,10 @@ const Products = (props) => {
             {data
               // eslint-disable-next-line
               .filter((item) => {
-                if (filterTerm === "") {
+                if (filterTerm.length < 1) {
                   return item;
                 } else if (
-                  item.productForm.toLowerCase() === filterTerm.toLowerCase() ||
-                  item.type.toLowerCase() === filterTerm.toLowerCase()
+                  filterTerm.includes(item.productForm.toLowerCase())
                 ) {
                   return item;
                 }
