@@ -7,6 +7,13 @@ const falseSlice = createSlice({
     addItem(state, action) {
       state.falseList.push(action.payload);
     },
+    removeItem(state, action) {
+      const deleteItem = state.falseList.find(
+        (item) => item.ArtikelNr === action.payload
+      );
+      const indexItem = state.falseList.indexOf(deleteItem);
+      state.falseList.splice(indexItem, 1);
+    },
   },
 });
 

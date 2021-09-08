@@ -27,6 +27,7 @@ function App() {
     setShowMenu(true);
     setAppSection("");
   };
+
   return (
     <>
       <Header homePageHandler={homePageHandler} />

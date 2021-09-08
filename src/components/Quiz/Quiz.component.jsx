@@ -8,13 +8,13 @@ import css from "./Quiz.module.css";
 import Content from "../Content/Content.component";
 
 const Quiz = (props) => {
-  const [isCorrectAnswer, setIsCorrectAnswer] = useState(0);
+  const [isCorrectAnswer, setIsCorrectAnswer] = useState("");
   const [inputNumbers, setInputNumbers] = useState([]);
   const [nextItem, setNextItem] = useState(0);
 
   const dispatch = useDispatch();
   const currentFalseArray = useSelector((state) => state.false.falseList);
-
+  // Handling the input numbers
   const numberHandler = (e) => {
     if (e.target.id === "C") {
       setInputNumbers([]);
@@ -32,16 +32,18 @@ const Quiz = (props) => {
       setInputNumbers([...inputNumbers, e.target.id]);
     }
   };
-
+  //Handling the correctness of the answer
   const isCorrect = () => {
+    // to check the length of answer with the input
     const currentArtikel = props.data[nextItem].ArtikelNr.toString();
+    //checking if it's true
     if (
       inputNumbers.join("").toString() ===
       props.data[nextItem].ArtikelNr.toString()
     ) {
-      setIsCorrectAnswer(1);
+      setIsCorrectAnswer("true");
       setTimeout(() => {
-        setIsCorrectAnswer(0);
+        setIsCorrectAnswer("");
       }, 500);
       setInputNumbers([]);
 
@@ -52,14 +54,19 @@ const Quiz = (props) => {
       } else {
         setNextItem(0);
       }
+
+      if (props.troubleshooting) {
+        dispatch(falseActions.removeItem(props.data[nextItem].ArtikelNr));
+      }
+      //checking if it's false
     } else if (
       inputNumbers.join("").length === currentArtikel.length &&
       inputNumbers.join("").toString() !==
         props.data[nextItem].ArtikelNr.toString()
     ) {
-      setIsCorrectAnswer(2);
+      setIsCorrectAnswer("false");
       setTimeout(() => {
-        setIsCorrectAnswer(0);
+        setIsCorrectAnswer("");
       }, 500);
       const falseItem = props.data[nextItem];
       if (!currentFalseArray.find((item) => item === falseItem)) {
@@ -91,14 +98,20 @@ const Quiz = (props) => {
           <div className={css.logos}>
             <i
               className="fas fa-check-circle fa-4x"
-              style={isCorrectAnswer === 1 ? { color: "green" } : { color: "" }}
+              style={
+                isCorrectAnswer === "true" ? { color: "green" } : { color: "" }
+              }
             ></i>
             <i
               className="fas fa-times-circle fa-4x"
-              style={isCorrectAnswer === 2 ? { color: "red" } : { color: "" }}
+              style={
+                isCorrectAnswer === "false" ? { color: "red" } : { color: "" }
+              }
             ></i>
           </div>
-          <Content image={props.data[nextItem].img} />
+          {props.data.length > 0 && (
+            <Content image={props.data[nextItem].img} />
+          )}
         </div>
         <div className={css.numpad}>
           <Input readOnly={true} value={inputNumbers.join("")} />

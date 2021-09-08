@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+
 import css from "./Products.module.css";
 import Card from "../UI/Card/Card.component";
+
 const Products = (props) => {
   const data = props.data;
+  const falseInputData = useSelector((state) => state.false.falseList);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterTerm, setFilterTerm] = useState([]);
   const itemSearchHandler = (e) => {
@@ -35,6 +39,8 @@ const Products = (props) => {
               <label htmlFor="bread">Backwaren</label>
               <input onChange={itemFilterHandler} id="meat" type="checkbox" />
               <label htmlFor="meat">Metzgerei</label>
+              <input onChange={itemFilterHandler} id="false" type="checkbox" />
+              <label htmlFor="false">Fehler Liste</label>
 
               <input
                 className={css.searchInput}
@@ -54,6 +60,11 @@ const Products = (props) => {
                   return item;
                 } else if (
                   filterTerm.includes(item.productForm.toLowerCase())
+                ) {
+                  return item;
+                } else if (
+                  filterTerm.includes("false") &&
+                  falseInputData.includes(item)
                 ) {
                   return item;
                 }

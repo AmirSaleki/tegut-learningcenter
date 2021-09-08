@@ -77,7 +77,7 @@ const MainPage = () => {
               {content === "quiz-meat" && <Quiz data={meatData} />}
               {content === "quiz-bread" && <Quiz data={breadData} />}
               {content === "quiz-false" && falseAnswerArray.length > 0 && (
-                <Quiz data={falseAnswerArray} />
+                <Quiz data={falseAnswerArray} troubleshooting={true} />
               )}
               {content === "quiz-false" && falseAnswerArray.length <= 0 && (
                 <h3>
