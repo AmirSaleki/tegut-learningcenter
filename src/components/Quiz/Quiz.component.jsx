@@ -6,6 +6,7 @@ import Numbers from "../UI/Numbers/Numbers.component";
 import Input from "../UI/Input/Input.component";
 import css from "./Quiz.module.css";
 import Content from "../Content/Content.component";
+import Button from "../UI/Button/Button.component";
 
 const Quiz = (props) => {
   const [isCorrectAnswer, setIsCorrectAnswer] = useState("");
@@ -47,7 +48,7 @@ const Quiz = (props) => {
       }, 500);
       setInputNumbers([]);
 
-      if (nextItem < props.data.length - 1) {
+      if (nextItem < props.data.length - 1 && !props.troubleshooting) {
         setTimeout(() => {
           setNextItem(nextItem + 1);
         }, 500);
@@ -57,6 +58,7 @@ const Quiz = (props) => {
 
       if (props.troubleshooting) {
         dispatch(falseActions.removeItem(props.data[nextItem].ArtikelNr));
+        setNextItem(0);
       }
       //checking if it's false
     } else if (
@@ -74,6 +76,21 @@ const Quiz = (props) => {
       }
     }
   };
+
+  const skipHandler = () => {
+    setIsCorrectAnswer("false");
+    setTimeout(() => {
+      setIsCorrectAnswer("");
+    }, 500);
+    const falseItem = props.data[nextItem];
+    if (!currentFalseArray.find((item) => item === falseItem)) {
+      dispatch(falseActions.addItem(falseItem));
+    }
+    setTimeout(() => {
+      setNextItem(nextItem + 1);
+    }, 500);
+  };
+
   useEffect(isCorrect, [
     inputNumbers,
     nextItem,
@@ -116,6 +133,11 @@ const Quiz = (props) => {
         <div className={css.numpad}>
           <Input readOnly={true} value={inputNumbers.join("")} />
           <Numbers numberHandler={numberHandler} />
+          {!props.troubleshooting && (
+            <Button onClick={skipHandler} className="primary">
+              Überspringen
+            </Button>
+          )}
         </div>
       </div>
     </>

@@ -4,6 +4,7 @@ button {
   cursor: pointer;
   width: 100%;
   font-size: 1.2rem;
+  user-select: none;
 }
 .primaryButton {
   background-color: var(--primaryOrange);
