@@ -87,9 +87,11 @@ const Products = (props) => {
                       src={item.img}
                       alt={item.id}
                     />
-                    <p>{item.title}</p>
-                    <p>{item.ArtikelNr}</p>
-                    <p>{item.type}</p>
+                    <div className={css.itemDetails}>
+                      <p>{item.title}</p>
+                      <p>{item.ArtikelNr}</p>
+                      <p>{item.type}</p>
+                    </div>
                   </div>
                 </Card>
               ))}

@@ -1,0 +1,144 @@
+.container {
+  position: relative;
+  margin: 4rem auto;
+  width: 60vw;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  user-select: none;
+}
+
+.container i {
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
+  color: var(--primaryOrange);
+  cursor: pointer;
+}
+
+.profileContent {
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+  user-select: none;
+}
+
+.profileContent img {
+  border: var(--primaryOrange) 5px solid;
+  border-radius: 50%;
+}
+
+.proHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.proBody {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.profileDetails {
+  border-right: solid 3px var(--primaryOrange);
+  padding-right: 2rem;
+}
+
+.profileDetails h6 {
+  margin-bottom: 4rem;
+}
+
+.statics {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.statics p {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.bigButton {
+  background-color: var(--primaryOrange);
+  color: white;
+  border-radius: 25px;
+  padding: 1rem;
+}
+
+.falseItemsContent {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.itemContentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.itemImage {
+  width: 45%;
+}
+
+.itemDetails {
+  display: flex;
+  flex-direction: column;
+  font-size: medium;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media only screen and (max-width: 1000px) {
+  .container {
+    width: 90vw;
+    gap: 0.5rem;
+  }
+
+  .profileContent {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .profileContent img {
+    width: 50%;
+  }
+
+  .proHeader {
+    margin-top: 1rem;
+  }
+
+  .proBody {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .profileDetails {
+    border-right: 0;
+    padding-right: 2rem;
+  }
+
+  .profileDetails h6 {
+    margin-bottom: 0.5rem;
+  }
+
+  .itemImage {
+    width: 40%;
+  }
+  .falseItemsContent {
+    grid-template-columns: 1fr 1fr;
+    margin: 2rem;
+  }
+}

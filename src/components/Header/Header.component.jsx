@@ -18,7 +18,7 @@ const Header = (props) => {
             {isLoggedIn && (
               <ul>
                 <li onClick={logoutHandler}>Abmelden</li>
-                <li>Profil</li>
+                <li onClick={props.profileHandler}>Profil</li>
                 <li onClick={props.homePageHandler}>Startseite</li>
               </ul>
             )}

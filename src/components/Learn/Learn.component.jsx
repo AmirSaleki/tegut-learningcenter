@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import Numbers from "../UI/Numbers/Numbers.component";
 import Input from "../UI/Input/Input.component";
 import Content from "../Content/Content.component";
 import css from "./Learn.module.css";
+import { profileActions } from "../../store/profile";
 
 const Learn = (props) => {
   const [inputNumbers, setInputNumbers] = useState([]);
   const [nextItem, setNextItem] = useState(0);
   const data = props.data;
+  const learnedItems = useSelector(
+    (state) => state.profile.profileData.learnedItems
+  );
+  const dispatch = useDispatch();
   const numberHandler = (e) => {
     if (e.target.id === "C") {
       setInputNumbers([]);
@@ -30,6 +36,9 @@ const Learn = (props) => {
     if (
       inputNumbers.join("").toString() === data[nextItem].ArtikelNr.toString()
     ) {
+      if (!learnedItems.find((item) => item === data[nextItem].ArtikelNr)) {
+        dispatch(profileActions.addToLearnedItems(data[nextItem].ArtikelNr));
+      }
       setInputNumbers([]);
       if (nextItem < data.length - 1) {
         setNextItem(nextItem + 1);
@@ -38,9 +47,8 @@ const Learn = (props) => {
       }
     }
   };
-
-  useEffect(isCorrect, [inputNumbers, nextItem, data]);
-
+  console.log(learnedItems);
+  useEffect(isCorrect, [inputNumbers, nextItem, data, dispatch, learnedItems]);
   return (
     <>
       <div className={css.container}>

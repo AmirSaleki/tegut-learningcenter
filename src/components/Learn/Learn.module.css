@@ -4,6 +4,7 @@
   flex-direction: row-reverse;
   align-items: center;
   justify-content: space-evenly;
+  user-select: none;
 }
 
 p {

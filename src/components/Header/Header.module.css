@@ -1,7 +1,7 @@
 .header {
   background-color: var(--primaryOrange);
-  padding: 2rem;
   user-select: none;
+  padding: 1rem 4rem;
 }
 
 .container {

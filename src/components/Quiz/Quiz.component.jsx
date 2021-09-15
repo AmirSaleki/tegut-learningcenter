@@ -134,7 +134,7 @@ const Quiz = (props) => {
           <Input readOnly={true} value={inputNumbers.join("")} />
           <Numbers numberHandler={numberHandler} />
           {!props.troubleshooting && (
-            <Button onClick={skipHandler} className="primary">
+            <Button onClick={skipHandler} className="secondary">
               Überspringen
             </Button>
           )}

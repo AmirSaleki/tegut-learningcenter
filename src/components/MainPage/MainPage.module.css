@@ -2,6 +2,7 @@
   margin: 4rem auto;
   width: 90vw;
   align-self: center;
+  user-select: none;
 }
 
 .interior {

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
 import { useDispatch } from "react-redux";
-import { loginActions } from "../../store/login-slice";
 
+import { loginActions } from "../../store/login-slice";
+import { profileActions } from "../../store/profile";
 import css from "./Login.module.css";
 import Input from "../UI/Input/Input.component";
 import Card from "../UI/Card/Card.component";
@@ -22,6 +23,7 @@ const Login = () => {
 
   const userNameHandler = (el) => {
     setEnteredUserName(el.target.value);
+    dispatch(profileActions.addEmail(el.target.value.trim()));
   };
 
   const passwordHandler = (el) => {
@@ -38,7 +40,6 @@ const Login = () => {
         enteredPassword === "tegut1234"
       ) {
         dispatch(loginActions.login(true));
-        window.localStorage.setItem("isLoggedIn", true);
       } else {
         alert("enter the right one!");
       }
@@ -52,6 +53,7 @@ const Login = () => {
       setShowPassword(false);
     }
   };
+
   return (
     <>
       <div className={css.background}>

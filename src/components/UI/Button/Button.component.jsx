@@ -7,6 +7,9 @@ const Button = (props) => {
     if (clName === "primary") {
       const buttonStyle = css.primaryButton;
       return buttonStyle;
+    } else if (clName === "secondary") {
+      const buttonStyle = css.secondaryButton;
+      return buttonStyle;
     } else if (clName === "outline") {
       const buttonStyle = css.outlineButton;
       return buttonStyle;
