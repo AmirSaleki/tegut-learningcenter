@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
 import { useDispatch } from "react-redux";
 
+import apiKeys from "../../API_KEYS";
 import { loginActions } from "../../store/login-slice";
 import { profileActions } from "../../store/profile";
 import css from "./Login.module.css";
@@ -15,7 +16,12 @@ const Login = () => {
   const [currentlyUser, setCurrentlyUser] = useState(true);
   const [enteredUserName, setEnteredUserName] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
+  const [secondPassword, setSecondPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [signupError, setSignupError] = useState(false);
+  const [signupErrorMessage, setSignupErrorMessage] = useState("");
+
+  const firebaseAPI = apiKeys.firebaseAuthAPI;
 
   const userManagerHandler = () => {
     setCurrentlyUser(!currentlyUser);
@@ -28,23 +34,59 @@ const Login = () => {
 
   const passwordHandler = (el) => {
     setEnteredPassword(el.target.value);
+    setSignupError(false);
   };
 
-  const secondPasswordHandler = (el) => {};
+  const secondPasswordHandler = (el) => {
+    setSecondPassword(el.target.value);
+    setSignupError(false);
+  };
 
   const submitHandler = (el) => {
     el.preventDefault();
+    let url;
     if (currentlyUser) {
-      if (
-        enteredUserName.toLowerCase().trim() === "admin@tlc.com" &&
-        enteredPassword === "tegut1234"
-      ) {
-        dispatch(loginActions.login(true));
-      } else {
-        alert("enter the right one!");
-      }
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" +
+        firebaseAPI;
     } else {
+      if (enteredPassword === secondPassword) {
+        url =
+          "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" +
+          firebaseAPI;
+      } else {
+        alert("Please enter your password twice!");
+      }
     }
+
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        email: enteredUserName,
+        password: enteredPassword,
+        returnSecureToken: true,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          dispatch(loginActions.login());
+        } else {
+          return res.json().then((data) => {
+            let errorMessage = "Authentication Failed!";
+            if (data && data.error && data.error.message) {
+              errorMessage = data.error.message;
+            }
+            setSignupError(true);
+            setSignupErrorMessage(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        console.log(" dataaaa    " + data);
+      });
   };
   const showPasswordHandler = (e) => {
     if (e.target.checked) {
@@ -82,7 +124,11 @@ const Login = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="retype your password"
                   onChange={secondPasswordHandler}
+                  required
                 />
+              )}
+              {signupError && (
+                <p style={{ color: "red" }}>{signupErrorMessage}</p>
               )}
               <span className={css.showPassword}>
                 <input
