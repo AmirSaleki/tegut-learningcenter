@@ -42,6 +42,14 @@ const Login = () => {
     setSignupError(false);
   };
 
+  const logoutHandler = () => {
+    const fortyMinutes = 3000000;
+    setTimeout(() => {
+      dispatch(loginActions.logout());
+      console.log("The time has arrived");
+    }, fortyMinutes);
+  };
+
   const submitHandler = (el) => {
     el.preventDefault();
     let url;
@@ -73,6 +81,7 @@ const Login = () => {
       .then((res) => {
         if (res.ok) {
           dispatch(loginActions.login());
+          logoutHandler();
         } else {
           return res.json().then((data) => {
             let errorMessage = "Authentication Failed!";
