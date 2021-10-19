@@ -82,6 +82,8 @@ const Quiz = (props) => {
     setTimeout(() => {
       setIsCorrectAnswer("");
     }, 500);
+    setInputNumbers([]);
+
     const falseItem = props.data[nextItem];
     if (!currentFalseArray.find((item) => item === falseItem)) {
       dispatch(falseActions.addItem(falseItem));
