@@ -47,7 +47,6 @@ const Learn = (props) => {
       }
     }
   };
-  console.log(learnedItems);
   useEffect(isCorrect, [inputNumbers, nextItem, data, dispatch, learnedItems]);
   return (
     <>

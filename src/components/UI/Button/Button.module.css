@@ -27,7 +27,7 @@ button {
 .salmonButton {
   background-color: var(--salomon);
   color: white;
-  padding: 1rem;
+  padding: 0.2rem;
   border: solid 2px var(--primaryOrange);
   border-radius: 10px;
   cursor: pointer;

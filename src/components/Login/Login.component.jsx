@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useSpring, animated } from "react-spring";
 import { useDispatch } from "react-redux";
 
 import apiKeys from "../../API_KEYS";
@@ -11,7 +10,6 @@ import Card from "../UI/Card/Card.component";
 import Button from "../UI/Button/Button.component";
 
 const Login = () => {
-  const spring = useSpring({ to: { opacity: 1 }, from: { opacity: 0 } });
   const dispatch = useDispatch();
   const [currentlyUser, setCurrentlyUser] = useState(true);
   const [enteredUserName, setEnteredUserName] = useState("");
@@ -42,12 +40,10 @@ const Login = () => {
     setSignupError(false);
   };
 
-  const logoutHandler = () => {
-    const fortyMinutes = 3000000;
+  const logoutHandler = (expireTime) => {
     setTimeout(() => {
       dispatch(loginActions.logout());
-      console.log("The time has arrived");
-    }, fortyMinutes);
+    }, expireTime * 1000);
   };
 
   const submitHandler = (el) => {
@@ -63,7 +59,7 @@ const Login = () => {
           "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" +
           firebaseAPI;
       } else {
-        alert("Please enter your password twice!");
+        alert("Your passwords does not match!");
       }
     }
 
@@ -77,25 +73,24 @@ const Login = () => {
       headers: {
         "Content-Type": "application/json",
       },
-    })
-      .then((res) => {
-        if (res.ok) {
-          dispatch(loginActions.login());
-          logoutHandler();
-        } else {
-          return res.json().then((data) => {
-            let errorMessage = "Authentication Failed!";
-            if (data && data.error && data.error.message) {
-              errorMessage = data.error.message;
-            }
-            setSignupError(true);
-            setSignupErrorMessage(errorMessage);
-          });
+    }).then(async (res) => {
+      if (res.ok) {
+        const response = await res.json();
+        const idToken = response.idToken;
+        const expireTime = response.expiresIn;
+
+        dispatch(loginActions.login(idToken));
+        logoutHandler(expireTime);
+      } else {
+        const data_1 = await res.json();
+        let errorMessage = "Authentication Failed!";
+        if (data_1 && data_1.error && data_1.error.message) {
+          errorMessage = data_1.error.message;
         }
-      })
-      .then((data) => {
-        console.log(" dataaaa    " + data);
-      });
+        setSignupError(true);
+        setSignupErrorMessage(errorMessage);
+      }
+    });
   };
   const showPasswordHandler = (e) => {
     if (e.target.checked) {
@@ -108,7 +103,7 @@ const Login = () => {
   return (
     <>
       <div className={css.background}>
-        <animated.div style={spring} className={css.container}>
+        <div className={css.container}>
           <Card>
             <form className={css.form} onSubmit={submitHandler}>
               <h2>tegut-Lernzentrum</h2>
@@ -159,7 +154,7 @@ const Login = () => {
               </p>
             </form>
           </Card>
-        </animated.div>
+        </div>
       </div>
     </>
   );

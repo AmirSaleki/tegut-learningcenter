@@ -4,15 +4,50 @@ import { useSelector } from "react-redux";
 import Card from "../UI/Card/Card.component";
 import css from "./Profile.module.css";
 import dummyData from "../../DUMMY_DATA";
+import apiKeys from "../../API_KEYS";
+import Button from "../UI/Button/Button.component";
+import Input from "../UI/Input/Input.component";
 
 const Profile = (props) => {
   const [showFalseItems, setShowFalseItems] = useState(false);
+  const [changePasswordButton, setChangePasswordButton] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
   const falseInputData = useSelector((state) => state.false.falseList);
   const profileData = useSelector((state) => state.profile.profileData);
   const learnedItemsLength = profileData.learnedItems.length;
   const allItemsLength = dummyData.length;
   const showFalseItemsHandler = () => {
     setShowFalseItems(!showFalseItems);
+  };
+
+  const selectNewPasswordHandler = (el) => {
+    setNewPassword(el.target.value.trim());
+  };
+
+  const tokenID = useSelector((state) => state.login.tokenID);
+  const changePasswordVisibilityHandler = () => {
+    setChangePasswordButton(!changePasswordButton);
+  };
+
+  const changePasswordHandler = () => {
+    const url =
+      "https://identitytoolkit.googleapis.com/v1/accounts:update?key=" +
+      apiKeys.firebaseAuthAPI;
+    if (newPassword.length > 6) {
+      async function changePassword() {
+        await fetch(url, {
+          method: "POST",
+          body: JSON.stringify({
+            idToken: tokenID,
+            password: newPassword,
+            returnSecureToken: true,
+          }),
+        });
+      }
+      changePassword().catch((err) => console.log("error" + err));
+    } else {
+      alert("Choose a longer password please");
+    }
   };
 
   return (
@@ -29,6 +64,24 @@ const Profile = (props) => {
               <div className={css.profileDetails}>
                 <h3>{props.name}</h3>
                 <h6>{profileData.email}</h6>
+                <h6
+                  className={css.changePassword}
+                  onClick={changePasswordVisibilityHandler}
+                >
+                  Passwort ändern
+                </h6>
+                {changePasswordButton && (
+                  <div>
+                    <Input
+                      id="changePasswordInput"
+                      type="text"
+                      onChange={selectNewPasswordHandler}
+                    ></Input>
+                    <Button className="salmon" onClick={changePasswordHandler}>
+                      Change
+                    </Button>
+                  </div>
+                )}
                 <h3>{props.role}</h3>
                 <h3 style={{ color: "gray", cursor: "pointer" }}>Wochenplan</h3>
               </div>
