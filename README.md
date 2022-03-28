@@ -1,3 +1,6 @@
+# Demo at https://tegut.amirsaleki.de/
+# guest username: guest@tlc.com   , password:  Guest!1234
+
 Tegut learning center is a platform for new members of tegut coworkers who need to learn the work.
 It has 3 sections of learning system:
 
@@ -9,3 +12,4 @@ this section has two main way of learning:
 2- Products: Shows list of products by many filters like sorting by type of items or displaying the items which user incorrectly gave by Quiz.
 
 3- Cashier Program: coming soon.
+
